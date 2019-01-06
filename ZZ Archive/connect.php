@@ -1,0 +1,27 @@
+<?php
+$servername = "localhost";
+$username = "laura_james";
+$password = "";
+$dbname = "c9";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT * FROM users2";
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+    // output data of each row
+    while($row = $result->fetch_assoc()) {
+        echo "id: " . $row["user_id"]. "<br> - Name: " . $row["username"]. "<br> " . $row["password"]. "<br>";
+       echo "<hr>";
+    }
+} else {
+    echo "0 results";
+}
+$conn->close();
+?>
